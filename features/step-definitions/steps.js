@@ -7,11 +7,13 @@ When("the user closes the promo banner if it appears", async () => {
   try {
     await $('//*[@id="modal-Website"]/div[2]/div').waitForExist();
     await browser.url("https://newegg.com");
-  } catch (a) {}
+  } catch (a) {
+    console.log(a)
+  }
 });
 When("the user enters the word Windows in the search bar", async () => {
   const input = await $(
-    '//*[@id="app"]/header/div[1]/div[1]/div[1]/div[4]/form/div/div[1]/input'
+    "#app > header > div.page-content-inner > div:nth-child(1) > div.section-left.auto-flex > div.header2021-search.auto-flex > form > div > div.header2021-search-box.auto-flex > input[type=search]"
   );
   await input.isClickable();
   await input.click();
@@ -19,25 +21,31 @@ When("the user enters the word Windows in the search bar", async () => {
 });
 When("the user clicks on the search button", async () => {
   const button = $(
-    '//*[@id="app"]/header/div[1]/div[1]/div[1]/div[5]/form/div/div[2]/button'
+    "#app > header > div.page-content-inner > div:nth-child(1) > div.section-left.auto-flex > div.header2021-search.auto-flex > form > div > div.header2021-search-button > button"
   );
   await button.click();
 });
 Then("at least one item should appear", async () => {
-  await $('//*[@id="app"]').waitForExist();
+  await $("#app").waitForExist();
   await expect(
-    $('//*[@id="app"]/div[3]/section/div/div/div[2]/div/div/div/div[2]/div[1]')
+    $(
+      "#app > div.page-content > section > div > div > div.row-body > div > div > div > div.row-body > div"
+    )
   ).toBeExisting();
 });
 
 When("the user opens Today's Best Deals Tab", async () => {
-  await $('//*[@id="trendingBanner_720202"]').isClickable();
-  const deals = await $('//*[@id="trendingBanner_720202"]');
+  await $("#trendingBanner_720202").isClickable();
+  const deals = await $("#trendingBanner_720202");
   await deals.click();
 });
 When("the user clicks on the Internet shop logo", async () => {
-  await $('//*[@id="app"]/header/div[1]/div[1]/div[1]/div[2]/a').isClickable();
-  const logo = $('//*[@id="app"]/header/div[1]/div[1]/div[1]/div[2]/a');
+  await $(
+    "#app > header > div.page-content-inner > div:nth-child(1) > div.section-left.auto-flex > div.header2021-logo > a"
+  ).isClickable();
+  const logo = $(
+    "#app > header > div.page-content-inner > div:nth-child(1) > div.section-left.auto-flex > div.header2021-logo > a"
+  );
   await logo.click();
 });
 Then("the main page should open", async () => {

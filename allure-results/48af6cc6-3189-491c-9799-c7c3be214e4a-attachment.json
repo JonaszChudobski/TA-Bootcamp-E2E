@@ -1,0 +1,4 @@
+{
+  "using": "css selector",
+  "value": "#app > header > div.page-content-inner > div:nth-child(1) > div.section-left.auto-flex > div.header2021-logo > a"
+}
